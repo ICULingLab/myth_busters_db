@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to COVID-19 Myth Busters Database 
 
 You can use the [editor on GitHub](https://github.com/ICULingLab/myth_busters_db/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
