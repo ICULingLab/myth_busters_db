@@ -57,7 +57,14 @@ class ArticlesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @article.update(article_params)
-				format.html { redirect_to @article.collection, notice: 'Article was successfully updated.' }
+				collection = @article.collection
+				notice = if @article.number == collection.articles.length && @article.title.empty?
+					@article.destroy
+					"Article was successfully deleted."
+				else
+					"Article was successfully updated."
+				end
+				format.html { redirect_to @article.collection, notice: notice }
 				format.json { render :show, status: :ok, location: @article }
 			else
 				format.html { render :edit }

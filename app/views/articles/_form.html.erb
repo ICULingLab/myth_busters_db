@@ -1,8 +1,15 @@
+<% submit_message = article.persisted? ? 'Set' : 'Add' %>
 <%= form_with(model: article, local: true) do |form| %>
-	<td>
-		<%= form.hidden_field :collection_id %>
-		<%= form.hidden_field :number %>
-		<%= form.text_area :title, style: "box-sizing: border-box; width:100%" %>
-	</td>
-	<td><%= form.submit "Set", class: "button fill-a-cell" %></td>
+	<%= form.hidden_field :collection_id %>
+	<%= form.hidden_field :number %>
+	<table class="inner-table">
+		<tr>
+			<td>
+				<%= form.text_area :title, style: "box-sizing: border-box; width:100%" %>
+			</td>
+			<td class="button-cell">
+				<%= form.submit submit_message, class: "button fill-a-cell" %>
+			</td>
+		</tr>
+	</table>
 <% end %>

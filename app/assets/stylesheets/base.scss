@@ -4,14 +4,40 @@ table.info {
 	}
 }
 
+.with-inner-table {
+	padding: 0;
+}
+
+.inner-table {
+	margin: 0;
+	padding: 0;
+	border-style: none;
+	box-sizing: border-box;
+	width: 100%;
+
+	tr {
+		border-style: none;
+
+		td {
+			border-style: none;
+		}
+	}
+}
+
+.button-cell {
+	width: 4em;
+	vertical-align: top
+}
+
 .button {
 	display: inline-block;
 	border: 1px solid black;
-	border-radius: 2px;
+	border-radius: 5px;
 	box-shadow: 1px 1px 1px #555;
 	margin: 1px;
-	padding: 0 2px;
+	padding: 1px 4px;
 	background-color: #def;
+	text-align: center;
 	font-size: 10pt;
 	text-decoration: none
 }

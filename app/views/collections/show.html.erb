@@ -56,16 +56,26 @@
 	<% @collection.articles.order(:number).each do |article| %>
 		<tr>
 			<th><%= article.native_number || article.number %></th>
-			<td><%= article.title %></td>
 			<% if @collection.editable?(current_user) %>
-				<td style="vertical-align: top">
-					<%= link_to 'Edit', 'javascript:void(0)', class: 'button button_edit_article fill-a-cell', article_number: article.number %>
+				<td class="with-inner-table">
+					<table class="inner-table">
+						<tr>
+							<td>
+								<%= article.title %>
+							</td>
+							<td class="button-cell">
+								<%= link_to 'Edit', 'javascript:void(0)', class: 'button button_edit_article fill-a-cell', article_number: article.number %>
+							</td>
+						</tr>
+					</table>
+					<div class='dialog_edit_article' id='dialog_edit_article-<%= article.number%>' style='display:none'>
+						<%= render partial: 'articles/form', locals: {article: article} %>
+					</div>
 				</td>
-				<tr class='dialog_edit_article' id='dialog_edit_article-<%= article.number%>' style='display:none'>
-					<th></th>
-					<%= render partial: 'articles/form', locals: {article: article} %>
-				</tr>
 			<% else %>
+				<td>
+					<%= article.title %>
+				</td>
 			<% end %>
 		</tr>
 	<% end %>
@@ -74,7 +84,9 @@
 			<th style="color:#ccc">
 				<%= @new_article.number %>
 			</th>
-			<%= render partial: 'articles/form', locals: {article: @new_article} %>
+			<td class="with-inner-table">
+				<%= render partial: 'articles/form', locals: {article: @new_article} %>
+			</td>
 		</tr>
 	<% end %>
 </table>
