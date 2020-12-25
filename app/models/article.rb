@@ -3,7 +3,7 @@ class Article < ApplicationRecord
 	
 	def self.as_csv
 		CSV.generate do |csv|
-			csv << ["collection_name", "number", "translation"]
+			csv << ["translation_name", "number", "article"]
 			all.order(:collection_id, :number).each do |item|
 				csv << [item.collection.label, item.number, item.title]
 			end

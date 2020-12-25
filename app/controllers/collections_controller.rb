@@ -28,6 +28,11 @@ class CollectionsController < ApplicationController
 		if @collection.nil?
 			redirect_to collection_path(25)
 		end
+
+		if @collection.editable?(current_user)
+			@new_article = Article.new({collection_id: @collection.id, number: @collection.articles.length + 1})
+		end
+
 		respond_to do |format|
 			format.html
 			format.json { render json: @collection.as_json }

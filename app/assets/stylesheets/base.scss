@@ -3,3 +3,41 @@ table.info {
 		height: 2em;
 	}
 }
+
+.button {
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #555;
+	margin: 1px;
+	padding: 0 2px;
+	background-color: #def;
+	font-size: 10pt;
+	text-decoration: none
+}
+
+.fill-a-cell {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.button:hover{
+	background-color: #cde;
+}
+
+.current {
+	background-color: #324;
+	color: #def;
+}
+
+.current:hover {
+	background-color: #324;
+}
+
+.info {
+	display: inline-block;
+}
+
+.new {
+	background-color: #fbb;
+}

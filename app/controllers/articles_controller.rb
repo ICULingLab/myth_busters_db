@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
 
 	# GET /articles/new
 	def new
-		@article = Collection.new
+		@article = Article.new
 	end
 
 	# GET /articles/1/edit
@@ -39,9 +39,11 @@ class ArticlesController < ApplicationController
 	# POST /articles
 	# POST /articles.json
 	def create
+		@article = Article.new(article_params)
+
 		respond_to do |format|
 			if @article.save
-				format.html { redirect_to @article, notice: 'Collection was successfully created.' }
+				format.html { redirect_to @article.collection, notice: 'Article was successfully created.' }
 				format.json { render :show, status: :created, location: @article }
 			else
 				format.html { render :new }
@@ -55,7 +57,7 @@ class ArticlesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @article.update(article_params)
-				format.html { redirect_to @article.collection, notice: 'Translation was successfully updated.' }
+				format.html { redirect_to @article.collection, notice: 'Article was successfully updated.' }
 				format.json { render :show, status: :ok, location: @article }
 			else
 				format.html { render :edit }
@@ -83,6 +85,6 @@ class ArticlesController < ApplicationController
 
 		# Only allow a list of trusted parameters through.
 		def article_params
-			params.require(:article).permit(:title)
+			params.require(:article).permit(:title, :collection_id, :number)
 		end
 end

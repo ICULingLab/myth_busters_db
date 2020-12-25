@@ -1,8 +1,8 @@
 <%= form_with(model: article, local: true) do |form| %>
-	<table style='width:100%'>
-		<tr>
-			<td><%= form.text_area :title, style: "box-sizing: border-box; width:100%" %></td>
-			<td style='width:40pt'><%= form.submit "submit" %></td>
-		</tr>
-	</table>
+	<td>
+		<%= form.hidden_field :collection_id %>
+		<%= form.hidden_field :number %>
+		<%= form.text_area :title, style: "box-sizing: border-box; width:100%" %>
+	</td>
+	<td><%= form.submit "Set", class: "button fill-a-cell" %></td>
 <% end %>

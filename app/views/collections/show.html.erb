@@ -55,21 +55,26 @@
 <table>
 	<% @collection.articles.order(:number).each do |article| %>
 		<tr>
-			<th><%= article.native_number.nil? ? article.number : article.native_number %></th>
-
+			<th><%= article.native_number || article.number %></th>
+			<td><%= article.title %></td>
 			<% if @collection.editable?(current_user) %>
-				<td>
-					<%= article.title %>
-					<%= link_to 'edit', 'javascript:void(0)', class: 'button button_edit_article', article_number: article.number %>
-					<div class='dialog_edit_article' id='dialog_edit_article-<%= article.number%>' style='display:none'>
-						<%= render partial: 'articles/form', locals: {article: article} %>
-					</div>
+				<td style="vertical-align: top">
+					<%= link_to 'Edit', 'javascript:void(0)', class: 'button button_edit_article fill-a-cell', article_number: article.number %>
 				</td>
+				<tr class='dialog_edit_article' id='dialog_edit_article-<%= article.number%>' style='display:none'>
+					<th></th>
+					<%= render partial: 'articles/form', locals: {article: article} %>
+				</tr>
 			<% else %>
-				<td>
-					<%= article.title %>
-				</td>
 			<% end %>
+		</tr>
+	<% end %>
+	<% if @collection.editable?(current_user) %>
+		<tr>
+			<th style="color:#ccc">
+				<%= @new_article.number %>
+			</th>
+			<%= render partial: 'articles/form', locals: {article: @new_article} %>
 		</tr>
 	<% end %>
 </table>
@@ -78,8 +83,7 @@
 	<script>
 		$('.button_edit_article').on('click', function(){
 			var anum = $(this).attr('article_number');
-			$('.dialog_edit_article').hide();
-			$('#dialog_edit_article-' + anum).show();
+			$('#dialog_edit_article-' + anum).toggle();
 		});
 	</script>
 <% end %>

@@ -3,9 +3,9 @@ class Language < ApplicationRecord
 
 	def self.as_csv
 		CSV.generate do |csv|
-			csv << column_names
+			csv << ["id", "label", "autonyms", "glossonyms", "iso639_3", "reference"]
 			all.each do |item|
-				csv << item.attributes.values_at(*column_names)
+				csv << [item.id, item.label, item.autonyms, item.glossonyms, item.iso639_3, item.reference]
 			end
 		end
 	end
