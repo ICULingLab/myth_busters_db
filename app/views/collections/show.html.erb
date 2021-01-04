@@ -1,11 +1,45 @@
 <%= render partial: 'header' %>
 <%= render partial: 'index' %>
 
-<h1><%= @collection.label %></h1>
+<h1 class="center-when-narrow"><%= @collection.label %></h1>
+<div class="center-when-narrow" style="margin:4px">
 <%= link_to "Download meta data", collection_path(@collection, format: :csv), class: :button %>
 <%= link_to "Download translations", collection_articles_path(@collection, format: :csv), class: :button %>
-<br/><br/>
-<table class="info">
+</div>
+
+<div class="show-when-narrow" style="margin:6px">
+<table class="info center-when-narrow" style="display:table">
+	<tr>
+		<th>Authors</th>
+		<td><%= @collection.authors.join(", ") %></td>
+	</tr>
+	<% if @collection.source %>
+		<tr>
+			<th>Source language</th>
+			<td><%= @collection.source %></td>
+		</tr>
+	<% end %>
+	<tr>
+		<th>Language</th>
+		<td><%= render partial:'languages/language', object: @collection.language %></td>
+	</tr>
+		<th>Script</th>
+		<td><%= render partial:'scripts/script', object: @collection.script %></td>
+	</tr>
+</table>
+</div>
+
+<table class="info show-when-wide">
+	<tr>
+		<th>Language</th>
+		<td><%= render partial:'languages/language', object: @collection.language %></td>
+	</tr>
+		<th>Script</th>
+		<td><%= render partial:'scripts/script', object: @collection.script %></td>
+	</tr>
+</table>
+
+<table class="info show-when-wide">
 	<tr>
 		<th>Authors</th>
 		<td><%= @collection.authors.join(", ") %></td>
@@ -15,7 +49,8 @@
 		<td><%= @collection.source %></td>
 	</tr>
 </table>
-<table class="info">
+
+<table class="info show-when-wide">
 	<tr>
 		<th>Language</th>
 		<td><%= render partial:'languages/language', object: @collection.language %></td>
@@ -24,7 +59,8 @@
 		<td><%= render partial:'scripts/script', object: @collection.script %></td>
 	</tr>
 </table>
-<table class="info">
+
+<table class="info show-when-wide">
 	<tr>
 		<th>Created at</th>
 		<td><%= @collection.created_at%></td>
