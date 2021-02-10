@@ -7,5 +7,14 @@ As of February 1, 2021, versions in 116 languages/scripts are available.
 This database is a text only version created for NLP researchers who are interested in accessing 
 a small set of data across muliple languages. 
 
+# How to use this site
+
+
+
+# Developer information
+
+developed by Jindong Kim, Mana Ashida and Seunghun J. Lee
+contacts: iculinglab@gmail.com
+
 
 edit me in /app/views/home/_about.html.md
